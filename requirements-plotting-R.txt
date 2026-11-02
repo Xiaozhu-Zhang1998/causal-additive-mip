@@ -1,0 +1,11 @@
+# R packages for saved-result rendering (R 4.5.0).
+ggplot2
+dplyr
+tidyr
+purrr
+readr
+stringr
+patchwork
+ggh4x
+igraph
+# Aggregation also needs SID. Fitting needs CAM, mgcv, mboost, np, glmnet, earth.

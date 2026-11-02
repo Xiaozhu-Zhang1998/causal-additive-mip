@@ -1,0 +1,10 @@
+data/generated/
+results/rerun/
+results/reaggregated/
+outputs/
+__pycache__/
+*.py[cod]
+.Rhistory
+.DS_Store
+.venv/
+*.tar.gz

@@ -1,0 +1,3 @@
+# Preserve supplied datasets and numerical results byte-for-byte in Git.
+data/** -text
+results/** -text
