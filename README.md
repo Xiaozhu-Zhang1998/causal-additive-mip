@@ -26,7 +26,7 @@ Use the Python dependencies in `requirements.txt`, the R dependencies in `docs/s
 
 Inputs and true graphs are included under `data/real/` and `data/simulated/`. Supplied estimates, superstructures, prior matrices, raw timings and numerical summaries are under `results/`.
 
-For one ER trial, the execution order is:
+For one ER (Erdos-Renyi) trial, the execution order is:
 
 ```bash
 # R baseline methods and preliminary neighborhood selection.
