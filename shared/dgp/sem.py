@@ -162,4 +162,4 @@ def gen_data_from_adj_tdisn(adj_mat, n, p, func, sd=np.array([0.1]), df=None, se
         return (X, edge_functions)
     return X
 
-function_pool = [linear, sine, cosine, tanh, arctan, soft_cubic]
+function_pool = [sine, cosine, tanh, arctan, soft_cubic]
