@@ -88,9 +88,6 @@ class DataTransformer:
 			x[zero_indices,0] = eps;
 			x[:,0] = 1.0/x[:,0]**0.5 ;
 		else:
-			print ('WARNING: unknown function id',function_id, 'encountered, returning column as-is...');
-			x = np.zeros((s.shape[0],1),dtype=dt);
-			import ipdb; ipdb.set_trace();
-			x[:,0] = x.reshape(-1)**1;
-			
+			raise ValueError(f"Unknown GLOBE function ID: {function_id}")
+
 		return x;
