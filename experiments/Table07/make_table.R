@@ -2,10 +2,10 @@
 cmd<-commandArgs(FALSE);this<-sub('^--file=','',cmd[grepl('^--file=',cmd)][1])
 ROOT<-normalizePath(dirname(this));while(!file.exists(file.path(ROOT,'shared/settings.py'))) ROOT<-dirname(ROOT)
 OUTPUT_DIR<-file.path(ROOT,'outputs/tables');dir.create(OUTPUT_DIR,recursive=TRUE,showWarnings=FALSE)
-SELECTED_CK<-character()
+SELECTED_CK<-'c4'
 setwd(Sys.getenv('JASA_RESULTS_ROOT',file.path(ROOT,'results')))
-source(file.path(ROOT,'shared/plots/Tables_graphs.R'),local=TRUE)
+source(file.path(ROOT,'shared/plots/Tables_ck.R'),local=TRUE)
 
 cat('Wrote tables to',OUTPUT_DIR,'\n')
 
-write.csv(summarize_graph_results(),file.path(OUTPUT_DIR,"Table07_means.csv"),row.names=FALSE)
+write.csv(summarize_ck("c4"),file.path(OUTPUT_DIR,"Table07_means.csv"),row.names=FALSE)

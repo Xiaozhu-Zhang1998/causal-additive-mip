@@ -99,7 +99,6 @@ class LBFGSBScipy(torch.optim.Optimizer):
 
 def main():
     import torch.nn as nn
-    # torch.set_default_dtype(torch.double)
 
     n, d, out, j = 10000, 3000, 10, 0
     input = torch.randn(n, d)
@@ -107,7 +106,7 @@ def main():
     w_true[j, :] = 0
     target = torch.matmul(input, w_true)
     linear = nn.Linear(d, out)
-    linear.weight.bounds = [(0, None)] * d * out  # hack
+    linear.weight.bounds = [(0, None)] * d * out
     for m in range(out):
         linear.weight.bounds[m * d + j] = (0, 0)
     criterion = nn.MSELoss()

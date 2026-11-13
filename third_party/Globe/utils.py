@@ -17,7 +17,6 @@ def WriteOutput(filename,G,k):
 	mat = np.array(G);
 	mat[mat !=0] =1;
 	mat=mat.T
-	#import ipdb;ipdb.set_trace();
 	with open(filename,'w') as file:
 		for i in range(0,k):
 			for j in range(0,k-1):
@@ -45,7 +44,6 @@ def CalculatePrecRecallUD(truth,hyp):
 				h[i,j]=1;
 				h[j,i]=1;
 				
-	#import ipdb; ipdb.set_trace();
 			
 	return CalculatePrecRecall(t,h);
 
@@ -73,7 +71,6 @@ def GTAdjacency(headers,G,H,transpose=False):
 	zh[zh!=0]=1;
 	zh=np.array(zh,dtype=int);
 	dims=len(G);
-	#print(zh)
 	
 	if transpose:
 		zh=zh.T;
@@ -140,8 +137,6 @@ def PrintAverageStats(auprcd,auprcu,sidul,siduu,shdu,fprec,frec,F1,uprec,urec,uF
 	with open("./tresults/shd"+opt+".txt", "a") as myfile:
 		myfile.write(str(folder)+": "+str(avgshd)+"\n")
 		
-	#with open("./tresults/F1"+opt+".txt", "a") as myfile:
-	#	myfile.write(str(folder)+": "+str(fprec)+","+str(frec)+","+str(F1)+"\n")
 		
 	with open("./tresults/"+str(folder)+"/summary"+opt+".txt", "w") as myfile:
 		print("Writing summary for structure");
@@ -174,15 +169,12 @@ def PrintGroundTruth(Nodes,gt,headers,path):
 	for pairs in gt:
 		first = pairs[0];
 		second = pairs[1];
-		#import ipdb; ipdb.set_trace();
 		#find the index in headers where value = first
-		i = headers[first];  #[k for k, v in headers.iteritems() if v == first][0]
-		j = headers[second]; #[k for k, v in headers.iteritems() if v == second][0]
+		i = headers[first];
+		j = headers[second];
 		fname="Truth_"+first+"_"+second+".png";
 		
 		source,target = DataCleaner().Clean(Nodes[:,i],Nodes[:,j],2);
-		#print(source);
-		#print(target);
 		Plot2d(source,target,path+fname,True);
 		
 def PrintAllPairs(Nodes,dims,path):
@@ -194,16 +186,15 @@ def PrintAllPairs(Nodes,dims,path):
 			fname="Visualization_"+str(i)+"_"+str(j)+".png";
 			source = Nodes[:,i]
 			target = Nodes[:,j];
-			#source,target = DataCleaner.Clean(Nodes[:,i],Nodes[:,j]);
 			Plot2d(source,target,path+"all/"+fname,True);
 
 def LoadData9(filename):
 	with open(filename,'r') as file:
 		k = file.readlines();
 	
-	start=0#1;
-	dims = 11#int(k[0].strip());
-	recs = len(k)#-1;
+	start=0
+	dims = 11
+	recs = len(k)
 	dt = np.dtype('Float64')
 	variables= np.zeros((1,dims),dtype=dt);
 	
@@ -217,7 +208,6 @@ def LoadData9(filename):
 				
 			variables=np.vstack((variables,temp));
 		else:
-			#print('ignoring...');
 			recs=recs-1;
 	variables=np.delete(variables,0,0);
 	
@@ -236,7 +226,6 @@ def LoadData(filename):
 	start=1;
 	dims = int(k[0].strip());
 	recs = len(k)-1;
-	#dt = np.dtype('Float64')
 	variables= np.zeros((1,dims));
 	
 	
@@ -249,7 +238,6 @@ def LoadData(filename):
 				
 			variables=np.vstack((variables,temp));
 		else:
-			#print('ignoring...');
 			recs=recs-1;
 	variables=np.delete(variables,0,0);
 	
@@ -261,12 +249,10 @@ def Store(vars,id,dc):
 	np.savetxt("./tdata/spre_"+str(dc)+"/experiment"+str(id+1)+".txt", nvars, delimiter=",")
 	
 def Standardize(variables):
-	#variables=DataCleaner().CleanMat(nvariables);
 	mu_ = np.mean(variables,axis=0);
 	sdev_ = np.std(variables,axis=0);
 	nvariables = (variables - mu_) / sdev_;
 	n_vars=DataCleaner().CleanMat(nvariables,3); return n_vars;
-	#np.savetxt("./experiment99.txt", n_vars, delimiter=",")
 	return nvariables;
 
 def Normalize(variables):
@@ -310,7 +296,6 @@ def Plot3d(source,target,target2):
 	plt.close();
 
 def EzPlot2d(Nodes,i,j,counter,path_,save=False,rejected=False):
-	#rejected=False;
 	plt.ioff();
 	if counter==99:
 		rejected=True;
@@ -344,16 +329,13 @@ def Plot2d(source,target,fname,save=False,rejected=False):
 	
 	if save:
 		plt.savefig(fname);
-	#plt.show();
 	plt.clf();
 	plt.close();
 	
 def Plot2dL(data1,data2,fname,isPRC=False):
 	
 	plt.ioff();
-	#plt.figure()
 	fig, axs = plt.subplots(1, 2)
-	#plt.clf();
 	
 	
 	
@@ -391,7 +373,6 @@ def Plot2dL(data1,data2,fname,isPRC=False):
 	axs[1].set_ylim(-0.1,1.1)
 	axs[1].set_title('AUC Undirected: '+str(np.round(auc,6)));
 	
-	#plt.show();
 	fig.savefig(fname);
 	plt.clf();
 	plt.close();
@@ -434,7 +415,6 @@ def LoadHeader(fname):
 		for i in range(len(k)):
 			alpha[i]=k[i].strip();
 			rev_alpha[alpha[i]]=i;
-	#import ipdb;ipdb.set_trace();
 	return alpha,rev_alpha;
 
 def LoadGroundTruth(fname,id=11):
@@ -453,13 +433,11 @@ def LoadGroundTruth(fname,id=11):
 				line_ = k[i].split(' ');
 			else:
 				line_ = k[i].split('\t');
-			#print(k[i]);
 			s=line_[0].strip();
 			t=line_[1].strip();
 			alpha.append((s,t));
 			
 	
-	#import ipdb;ipdb.set_trace();
 	return alpha,True;
 
 
@@ -510,15 +488,14 @@ def PrintGraph(Final_graph,Nodes,undecided,alpha,dims,logger,base_path="",save=F
 		for j in range(dims):
 			if Final_graph[i][j] is not None:
 			
-				#Plot2d(Nodes[:,j],Nodes[:,i],base_path+str(j)+"_"+str(i)+".png",save);
-				if (i,j) in undecided.keys(): # or (j,i) in undecided.keys():
+				if (i,j) in undecided.keys():
 					logger.WriteLog(alpha[j]+ ' --- '+alpha[i]+ ', ('+ str(undecided[(i,j)][1])+')');
 				else:
 					logger.WriteLog(alpha[j]+ ' --> '+alpha[i]+ ', ('+ str(Final_graph[i][j][1])+')');
 					
 				if save:
 					
-					if (i,j) in undecided.keys():# or (j,i) in undecided.keys():
+					if (i,j) in undecided.keys():
 						f.write('{0} {1} 0, ({2})\n'.format(alpha[j],alpha[i],undecided[(i,j)][1]));
 					else:
 						f.write('{0} {1} 1, ({2})\n'.format(alpha[j],alpha[i],Final_graph[i][j][1]));
@@ -578,19 +555,14 @@ def PrintGraph2(Final_graph,Nodes,alpha,dims,logger,base_path="",save=False, par
 			
 			c+=1;
 			
-			#Plot2d(Nodes[:,j],Nodes[:,i],base_path+str(j)+"_"+str(i)+".png",save);
 			logger.WriteLog(alpha[j]+ ' --> '+alpha[i]+ ', ('+ str(v[0])+',1)');
 			
 			if v[0]<0:
 				source,target = DataCleaner().Clean(Nodes[:,j],Nodes[:,i],2);
-				#Plot2d(source,target,base_path+str(c)+"_"+str(j)+"_"+str(i)+".png",save)
 			if save:
 				f.write('{0} {1}: ({2},{3})\n'.format(alpha[j],alpha[i],v[0],1));
 	
-	#Plot2dL2(np.array(arr_x),np.array(arr_y),imname,True);			
 	if save:
-		#f.write('Total Edges: {0}\n'.format(counter));
 		f.write('##################\n');
 		f.close();
-	#logger.WriteLog('Total Edges: '+str(counter));
 	logger.WriteLog('##################');

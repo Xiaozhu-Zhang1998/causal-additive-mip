@@ -155,17 +155,11 @@ class GaussianProcessRegularized(GaussianProcessRegressor):
 
                 return y_mean, np.sqrt(y_var)
             elif return_mdl:
-                #if y_test.ndim == 1:
-                #    y_test = y_test[:, np.newaxis]
 
-                #log_likelihood_dims = -0.5 * np.einsum("ik,ik->k", y_test,  # [:self.alpha_.shape[0]],
-                #                                       self.alpha_.reshape(1, -1))
-                #log_likelihood_dims -= np.log(np.diag(self.L_)).sum()
-                #log_likelihood_dims -= self.K.shape[0] / 2 * np.log(2 * np.pi)
 
                 #Gaussian likelihood
                 sigma = 1
-                log_lik =ll = np.sum(math.log(2*math.pi*(sigma**2))/2 + ((y_test-y_mean)**2)/(2 * (sigma**2))) # -log_likelihood_dims.sum(axis=-1)
+                log_lik =ll = np.sum(math.log(2*math.pi*(sigma**2))/2 + ((y_test-y_mean)**2)/(2 * (sigma**2)))
 
                 X_penalty = 1 / 2 * np.log(
                     np.linalg.det(np.identity(self.K.shape[0]) + 1 ** 2 * self.K))
@@ -186,7 +180,7 @@ class GaussianProcessRegularized(GaussianProcessRegressor):
         if y_test.ndim == 1:
             y_test = y_test[:, np.newaxis]
 
-        log_likelihood_dims = -0.5 * np.einsum("ik,ik->k", y_test, #[:self.alpha_.shape[0]],
+        log_likelihood_dims = -0.5 * np.einsum("ik,ik->k", y_test,
                                                self.alpha_.reshape(1, -1))
         log_likelihood_dims -= np.log(np.diag(self.L_)).sum()
         log_likelihood_dims -= self.K.shape[0] / 2 * np.log(2 * np.pi)
@@ -244,5 +238,5 @@ class GaussianProcessRegularized(GaussianProcessRegressor):
         return self.mdl_train, self.mdl_lik_train, self.mdl_model_train, self.mdl_pen_train
 
     def mdl_score_ytest(self, X_test, y_test):
-        mdl, log_lik, m_penalty, X_penalty =self.predict(X_test, y_test, return_mdl=True) #self._mdl_score(y_test)
+        mdl, log_lik, m_penalty, X_penalty =self.predict(X_test, y_test, return_mdl=True)
         return mdl, log_lik, m_penalty, X_penalty

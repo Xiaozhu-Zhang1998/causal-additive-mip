@@ -39,7 +39,6 @@ class Topic:
             "extra_refinement": True,
             "lg": None, "vb": 0}
 
-        #assert all([arg in self.defaultargs.keys() for arg in kwargs.keys()])
         self.__dict__.update((k, v) for k, v in self.defaultargs.items() if k not in kwargs.keys())
         self.__dict__.update((k, v) for k, v in kwargs.items() if k in self.defaultargs.keys())
 
@@ -91,7 +90,7 @@ class Topic:
             self.refinement_phase()
 
     def add_edges(self, source):
-        for node in self.candidates:  # todo could use prio q here
+        for node in self.candidates:
             if node in self.topological_order or node == source or self.has_cycle(source, node):
                 continue
             gain = self._addition_gain(node, source)

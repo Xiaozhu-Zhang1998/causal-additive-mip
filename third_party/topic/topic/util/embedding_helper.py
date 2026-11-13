@@ -1,4 +1,3 @@
-#import numpy as np
 import numpy as np
 import scipy as scipy
 
@@ -200,7 +199,6 @@ def sample_custom(inverse_cumulative_distribution,size = (1,1)):
 
 
 if __name__=="__main__":
-	#print (sample_qmc_halton(size = (100,2) ))
 
 	fun = lambda x: np.sin(np.sum(3*x**2))
 	x = np.array([1,1]).reshape(1,2)

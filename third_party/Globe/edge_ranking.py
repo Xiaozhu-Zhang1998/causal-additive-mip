@@ -18,13 +18,9 @@ class Scorer:
 		t0 = mpmath.power(2,-G-eps);
 		
 		t1 = mpmath.power(2,-S-eps);
-		#print 't1: ',t1;
 		t2 = (1.0/G) * mpmath.power(2,-G);
-		#print 't2: ',t2;
 		t3 = mpmath.power(t1,1) + mpmath.power(t2,1);
-		#print 't3: ',t3;
-		t4 = -(S)#mpmath.ln(mpmath.power(2,-S));
-		#t4 = mpmath.ln(t0 * t3);
+		t4 = -(S)
 		
 		return t4;
 		

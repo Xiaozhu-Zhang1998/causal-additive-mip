@@ -65,7 +65,7 @@ metric_labels <- c(
   "f1"  = "F1"
 )
 
-# Same four panel colors as the earlier simulation figure
+# Colors for the four degrees of freedom shown in Figure 10.
 panel_colors <- c(
   "#F8766D",
   "#7CAE00",

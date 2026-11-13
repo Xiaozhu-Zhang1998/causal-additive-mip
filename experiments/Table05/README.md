@@ -1,8 +1,8 @@
 # Table05
 
-Full results for eight Erdős–Rényi graph settings with n=500, tau=0.2, and 50 trials per setting.
+Full results for eight Erdős–Rényi graph settings with n=300, tau=0.1, and 50 trials per setting.
 
-Numerical results: `results/rawdata_c3/*/RS.csv`. From the repository root:
+Numerical results: `results/rawdata_c2/*/RS.csv`. From the repository root:
 
 ```bash
 Rscript experiments/Table05/make_table.R
@@ -11,7 +11,7 @@ Rscript experiments/Table05/make_table.R
 Run methods on the saved datasets:
 
 ```bash
-python experiments/Table05/run_mip.py --trial 0 --n 500 --tau 0.2 --p 15 --edge_prob 0.3
+python experiments/Table05/run_mip.py --trial 0 --n 300 --tau 0.1 --p 15 --edge_prob 0.3
 ```
 
 `run_all.py` with no arguments runs all settings and trials for this result. Use `--dry-run --all-settings --all-trials` to preview the commands. `aggregate.py` combines fitted graphs and runtimes into a numerical summary. Add `--from-saved` to summarize the supplied estimates in `results/reaggregated/`.

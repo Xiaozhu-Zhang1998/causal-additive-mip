@@ -48,18 +48,16 @@ class StatsCalculator:
 					
 			
 		#now ordered graph should contain predictions in decreasing order
-		#for i in range(len(ordered_graph)):
 
 		while len(unique_thresh)>0:
 			i = heappop(unique_thresh);
-			#print 'Limit count: ', i;
 			pr , rec,fps  = self.ComputeDirectedStats(ordered_graph,Truth,Headers,i);
 			precision.append(pr);
 			recall.append(rec);
 			fpr.append(fps);
 		
-		area_prc=auc(recall,precision);#import ipdb; ipdb.set_trace();
-		area_roc=auc(fpr,recall);#import ipdb; ipdb.set_trace();
+		area_prc=auc(recall,precision);
+		area_roc=auc(fpr,recall);
 		
 		return [precision,recall,area_prc],[recall,fpr,area_roc];
 	
@@ -70,13 +68,11 @@ class StatsCalculator:
 		tn=0;
 		fn=0;
 		
-		#for i in range(limit):
 		v = heappop(graph_);
 		source_= headers[v[1][1]];
 		target_= headers[v[1][0]];
 			
 		while v[0] <= limit and len(graph_)>0:
-			#print abs(v[0]),' vs ', abs(limit);
 			if (source_,target_) in truth:
 				tp+=1;
 			else:
@@ -88,7 +84,6 @@ class StatsCalculator:
 		
 		flag=False;
 		if len(graph_)==0:
-			#print abs(v[0]),' vs ', abs(limit);
 			flag=True;
 			if (v[0] <= limit) and ((source_,target_) in truth):
 				tp+=1;
@@ -101,18 +96,15 @@ class StatsCalculator:
 		
 				
 		while len(graph_)>0:
-			#print abs(v[0]), ' is done for..'
 			if (source_,target_) in truth:
 				fn+=1;
 			else:
 				tn+=1;
 				
 			v = heappop(graph_);
-			#import ipdb; ipdb.set_trace();
 			source_= headers[v[1][1]];
 			target_= headers[v[1][0]];
 				
-		#print abs(v[0]), ' is done for..'
 		if not flag:
 			if(source_,target_) in truth:
 				fn+=1;
@@ -158,15 +150,13 @@ class StatsCalculator:
 		#now ordered graph should contain predictions in decreasing order
 		while len(unique_thresh)>0:
 			i = heappop(unique_thresh);
-			#print 'Limit count: ', i;
 			pr , rec,fps  = self.ComputeUndirectedStats(ordered_graph,Truth,Headers,i);
 			precision.append(pr);
 			recall.append(rec);
 			fpr.append(fps);
 	
-		#import ipdb; ipdb.set_trace();
-		area_prc=auc(recall,precision);#import ipdb; ipdb.set_trace();
-		area_roc=auc(fpr,recall);#import ipdb; ipdb.set_trace();
+		area_prc=auc(recall,precision);
+		area_roc=auc(fpr,recall);
 		
 		return [precision,recall,area_prc],[recall,fpr,area_roc];
 			
@@ -180,7 +170,6 @@ class StatsCalculator:
 		v = heappop(graph_);
 		first_= headers[v[1][0]];
 		second_= headers[v[1][1]];
-		#import ipdb; ipdb.set_trace();
 		while v[0] <= limit and len(graph_)>0:		
 			if (first_,second_) in truth or (second_,first_) in truth:
 				tp+=1;
@@ -191,7 +180,6 @@ class StatsCalculator:
 		
 			first_= headers[v[1][0]];
 			second_= headers[v[1][1]];
-			#import ipdb; ipdb.set_trace();
 		flag=False;
 		if len(graph_)==0 :
 			flag=True;
@@ -204,18 +192,15 @@ class StatsCalculator:
 			else:
 				tn+=1;
 				
-		#import ipdb; ipdb.set_trace();	
 		while len(graph_)>0:
 			if (first_,second_) in truth or (second_,first_) in truth:
 				fn+=1;
 			else:
 				tn+=1;
 			v = heappop(graph_);
-			#import ipdb; ipdb.set_trace();
 			first_= headers[v[1][0]];
 			second_= headers[v[1][1]];
 		
-		#import ipdb; ipdb.set_trace();		
 		if not flag:
 			if ((first_,second_) in truth or (second_,first_) in truth):
 				fn+=1;
@@ -234,7 +219,6 @@ class StatsCalculator:
 		else:
 			fpr = (fp*1.0)/(fp+tn);
 			
-		#import ipdb; ipdb.set_trace();
 		return pr,rec,fpr
 			
 			

@@ -4,6 +4,6 @@ this<-sub('^--file=','',cmd[grepl('^--file=',cmd)][1])
 root<-normalizePath(dirname(this))
 while(!file.exists(file.path(root,'shared/settings.py'))) root<-dirname(root)
 python<-Sys.getenv('JASA_PYTHON','python3')
-status<-system2(python,c(shQuote(file.path(root,'scripts/run_r_adapter.py')),'fixed','bootstrap',
+status<-system2(python,c(shQuote(file.path(root,'scripts/run_r_adapter.py')),'er','bootstrap',
                        'Table07', vapply(commandArgs(TRUE),shQuote,character(1))))
 quit(status=status)

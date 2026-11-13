@@ -57,8 +57,7 @@ class LocallyConnected(nn.Module):
         return out
 
     def extra_repr(self):
-        # (Optional)Set the extra information about this module. You can test
-        # it by printing an object of this class.
+        # Include the layer dimensions and bias setting in its representation.
         return 'num_linear={}, in_features={}, out_features={}, bias={}'.format(
             self.num_linear, self.in_features, self.out_features,
             self.bias is not None

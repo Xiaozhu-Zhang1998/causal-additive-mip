@@ -60,6 +60,10 @@ The dry run prints the names of the fitting functions, solvers, R scripts and ag
 
 For ER experiments, `shared/cli.py` instead calls `select_specs`, then the R wrapper for neighborhood selection and baseline methods, optional bootstrap priors, Python baseline wrappers, `shared/fitting.py:fit_mip`, and aggregation. Figure 3's full batch is restricted to its four graph settings ×50 trials. The complete ER grid of 32 settings has an explicit runner at `scripts/run_er_all.py`.
 
+## Interaction study
+
+[Tables 1 and 3](../experiments/Table01/README.md) use the same 13 settings at two noise heterogeneity levels. The MIP runner regenerates the observations from the recorded seed and fits both MIP estimators. The baseline runner reads the supplied observations. The table scripts use the saved EDF summaries and baseline graphs.
+
 ## Results and inputs
 
 All provided numerical results and intermediates are in one `results/` tree. `results/Expression/influence_scores.csv` is the Figure 5 metric table, calculated from all 30 trials in `results/Expression/subsamples/`. The input files in `data/real/microarray/subsamples/` are bootstrap samples with 118 rows drawn with replacement. Default plotting reuses the influence table; the optional `scripts/prepare_microarray_results.R` can rebuild it if requested. New estimation runs write under `results/rerun/` to preserve provided numbers.

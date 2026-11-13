@@ -131,7 +131,6 @@ indtestHsic <- function(x,y,alpha=0.05, pars = list(method = "IncChol"))
     a <- (mean_h0^2)/var_h0
     b <- len*var_h0/mean_h0
     critical_value <- qgamma(1-alpha,shape=a,scale=b)
-#    p_value <- 1-pgamma(len*HSIC,shape=a,scale=b)
     p_value <- pgamma(len*HSIC,shape=a,scale=b, lower.tail=FALSE)
     resu <- list(statistic = len*HSIC, crit.value = critical_value, p.value = p_value, time = c(timeGramMat,timeHSIC,timeGamma))
     return(resu)

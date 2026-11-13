@@ -75,7 +75,7 @@ def eval_dag(true_dag, res_dag, N, enable_SID_call):
     if enable_SID_call:
         sid = np.float(SID(true_ones, res_dag))
     else:
-        sid = 1  # call to R script currently not working
+        sid = 1  # Sentinel used when SID evaluation is disabled.
 
     checksum = tp + tn + fn + fp
     assert (checksum == true_dag.shape[0] * true_dag.shape[1])
@@ -111,7 +111,6 @@ def gen_links_from_lagged_dag(dag, N, random_state, funs):
     :param random_state: rand
     :param funs: list of possible functional forms for each causal relationship
     """
-    # TODO: each variable should have only one list (which is a problem in case of DAG ><><>< like (Jilles example))
     links = dict()
     cnode = dag.nodes[-2]
     snode = dag.nodes[-1]

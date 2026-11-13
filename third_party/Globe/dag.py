@@ -39,7 +39,6 @@ class DAG:
 			target_node = node_tuple[0];
 			updated_bits = node_tuple[2];
 			e=self.Edges[target_node][source_node];										#get the candidate edge between nodes
-			#import ipdb; ipdb.set_trace();
 			self.logger.WriteLog('Considering Edge from : '+str(source_node)+ ' to: '+ str(target_node)+ ' costing: '+ str(edge_cost));
 			#------------------------------SANITY CHECKS-----------------------------------#
 			if edge_cost>0:																					#meaning that left over edges are not giving us gain anymore
@@ -94,7 +93,7 @@ class DAG:
 				self.Edges[target_node][source_node]=Edge(-1,[],np.array([0]),0);							#remove_from set of candidate edges
 			else:
 				print ('Attempted to rewrite on an old edge: ',e.GetFunctionId());
-				continue;																					#This never happens anymore, but I still leave this check here in case there is a corner case that is discovered later on.
+				continue;
 				
 			self.Nodes[target_node].SetCurrentBits(updated_bits);											#update current bits of target_node
 			parent_nodes.append(self.Nodes[source_node]);													#add this node to parents list now
@@ -247,7 +246,6 @@ class DAG:
 				current_parents=[i for i,x in enumerate(self.Final_graph[target_node]) if x is not None];
 				
 				if len(current_parents) <1:
-					#print 'Less than 1 parents. Nothing to check, moving on...'
 					continue;
 				
 				set_size = len(current_parents) - 1;

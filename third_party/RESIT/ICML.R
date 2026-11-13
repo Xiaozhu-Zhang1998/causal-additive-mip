@@ -1,5 +1,5 @@
-# Copyright (c) 2010-2012 Jonas Peters. Original COPYING was not supplied.
-# Retained fit/test interface only; the unused ICML driver is omitted.
+# Copyright (c) 2010-2012 Jonas Peters. See COPYING in the upstream distribution.
+# Fit a regression and test its residuals for independence.
 fit_and_test_independence <- function(x,y,z,alpha,model,parsModel = list(),indtest, parsIndtest)
     # fits x using y and tests against z
 {

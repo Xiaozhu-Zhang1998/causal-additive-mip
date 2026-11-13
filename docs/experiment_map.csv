@@ -4,13 +4,14 @@ Fig02,er,p15 rho.3; n300/500 tau.1/.2; 50 trials,rawdata_c*/rawdata_p_15_030_c*/
 Fig03,er,"n500 tau.2; (p,rho)=(10,.5),(15,.3),(20,.2),(25,.2); 50 trials",rawdata_c3/*/RS.csv,plot.R
 Fig04,chamber,n200:100:800; 10 trials per n,causal_chamber/RS.csv,plot.R
 Fig05,microarray,30 bootstrap samples with replacement; n118 p15; lambda.08,results/Expression/influence_scores.csv,plot.R
-Table01,interaction,p8 n300; 20 trials; not included,not included,README.md
+Table01,interaction,p8 n300 tau.1; 13 settings; 20 trials,interaction/mip_summary.csv and interaction/tau_0.1/setting_*/dag_*.csv,make_table.R
 Table02,vanilla,n500; five fixed graphs; 50 trials; inverse gamma1 lambda.005,rawdata_vanillacomp/*/RS.csv,make_table.R
-Table03,er,n500 tau.1; eight graph settings; 50 trials,rawdata_c1/*/RS.csv,make_table.R
-Table04,er,n300 tau.1; eight graph settings; 50 trials,rawdata_c2/*/RS.csv,make_table.R
-Table05,er,n500 tau.2; eight graph settings; 50 trials,rawdata_c3/*/RS.csv,make_table.R
-Table06,er,n300 tau.2; eight graph settings; 50 trials,rawdata_c4/*/RS.csv,make_table.R
-Table07,fixed,n500 tau.1; ten fixed graphs; 50 trials,rawdata_graphs/rawdata_graph_*/RS.csv,make_table.R
+Table03,interaction,p8 n300 tau.2; 13 settings; 20 trials,interaction/mip_summary.csv and interaction/tau_0.2/setting_*/dag_*.csv,make_table.R
+Table04,er,n500 tau.1; eight graph settings; 50 trials,rawdata_c1/*/RS.csv,make_table.R
+Table05,er,n300 tau.1; eight graph settings; 50 trials,rawdata_c2/*/RS.csv,make_table.R
+Table06,er,n500 tau.2; eight graph settings; 50 trials,rawdata_c3/*/RS.csv,make_table.R
+Table07,er,n300 tau.2; eight graph settings; 50 trials,rawdata_c4/*/RS.csv,make_table.R
+Table08,fixed,n500 tau.1; ten fixed graphs; 50 trials,rawdata_graphs/rawdata_graph_*/RS.csv,make_table.R
 Fig06,earlystop,InsuranceSmall p15 n500; 50 trials; relative gaps0:.01:.1,rawdata_earlystop/RS.csv,plot.R
 Fig07,radial,n500 tau.1; four graph settings; 50 trials; six radial bases bandwidth.5,rawdata_newbasis/*/RS.csv,plot.R
 Fig08,gamma,p10 n300 tau.2 rho.3; 50 trials; inverse gamma3:11,rawdata_gamma/RS.csv,plot.R

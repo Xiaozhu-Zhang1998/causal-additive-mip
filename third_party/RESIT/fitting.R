@@ -1,4 +1,4 @@
-# Copyright (c) 2010-2013 Jonas Peters. See original COPYING (not supplied).
+# Copyright (c) 2010-2013 Jonas Peters. See COPYING in the upstream distribution.
 library(mgcv)
 train_model <- function(f,X,y,pars=list()) {
     result <- f(X,y,pars)
@@ -28,15 +28,9 @@ train_gam <- function(X,y,pars = list(numBasisFcts = 10))
         for(i in 2:p[2])
         {
             labs<-paste(labs,"s(var",i,",k = ",pars$numBasisFcts,") + ",sep="")
-            #      labs<-paste(labs,"s(var",i,") + ",sep="")
-            # labs<-paste(labs,"lo(var",i,") + ",sep="")
         }
     }
     labs<-paste(labs,"s(var",p[2]+1,",k = ",pars$numBasisFcts,")",sep="")
-    # labs<-paste(labs,"s(var",p[2]+1,")",sep="")
-    # labs<-paste(labs,"s(var",p[2]+1,", bs = "cc")",sep="") #factor 2 faster
-    # labs<-paste(labs,"s(var",p[2]+1,", bs = "cr")",sep="") # factor 2 + eps faster
-    # labs<-paste(labs,"lo(var",p[2]+1,")",sep="")
     mod_gam <- FALSE
     try(mod_gam <- gam(formula=formula(labs), data=dat),silent = TRUE)
     if(typeof(mod_gam) == "logical")

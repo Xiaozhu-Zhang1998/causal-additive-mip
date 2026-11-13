@@ -27,4 +27,6 @@ Estimation also uses CAM, mgcv, mboost, np, glmnet and earth; graph aggregation 
 
 GLOBE uses rpy2, R and earth. Its Python interpreter and R shared library must use matching CPU architectures, such as arm64 on macOS. R terminal adapters call `python3`; set `JASA_PYTHON` to select another interpreter. Python entry points include `third_party/` on the import path.
 
-MIP runners use three joblib workers by default; `--n-jobs` changes this. Gurobi and BLAS thread defaults are retained. Time limits apply per optimization call. Figure 1 has no solver time limit. Full experiment batches can take hours or days. You can run individual trials or render figures and tables from saved results separately.
+The interaction study uses the same Python dependencies and Gurobi, with eight threads by default. Its standalone runner sets the thread count through `--threads`.
+
+The other MIP runners use three joblib workers by default; `--n-jobs` changes this. Gurobi and BLAS thread defaults are retained. Time limits apply per optimization call. Figure 1 has no solver time limit. Full experiment batches can take hours or days. You can run individual trials or render figures and tables from saved results separately.

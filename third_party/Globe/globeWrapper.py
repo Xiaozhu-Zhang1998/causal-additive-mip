@@ -32,7 +32,6 @@ class GlobeWrapper:
 
 			dims = len(k[1].split(','));
 			recs = len(k)-1;
-			#dt = np.dtype('Float64')
 			variables= np.zeros((1,dims));
 
 

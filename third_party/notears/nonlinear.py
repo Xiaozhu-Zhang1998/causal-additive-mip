@@ -54,10 +54,6 @@ class NotearsMLP(nn.Module):
         fc1_weight = fc1_weight.view(d, -1, d)  # [j, m1, i]
         A = torch.sum(fc1_weight * fc1_weight, dim=1).t()  # [i, j]
         h = trace_expm(A) - d  # (Zheng et al. 2018)
-        # A different formulation, slightly faster at the cost of numerical stability
-        # M = torch.eye(d) + A / d  # (Yu et al. 2019)
-        # E = torch.matrix_power(M, d - 1)
-        # h = (E.t() * M).sum() - d
         return h
 
     def l2_reg(self):
@@ -133,10 +129,6 @@ class NotearsSobolev(nn.Module):
         fc1_weight = fc1_weight.view(self.d, self.d, self.k)  # [j, i, k]
         A = torch.sum(fc1_weight * fc1_weight, dim=2).t()  # [i, j]
         h = trace_expm(A) - d  # (Zheng et al. 2018)
-        # A different formulation, slightly faster at the cost of numerical stability
-        # M = torch.eye(self.d) + A / self.d  # (Yu et al. 2019)
-        # E = torch.matrix_power(M, self.d - 1)
-        # h = (E.t() * M).sum() - self.d
         return h
 
     def l2_reg(self):

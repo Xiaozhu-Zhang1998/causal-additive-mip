@@ -102,7 +102,7 @@ def REarth(
                 degree=1,
             )
 
-    # Indices in the R earth object used by the original GLOBE code.
+    # Indices of the earth model components read by GLOBE.
     RSS_INDEX = 0
     DIRS_INDEX = 5
     CUTS_INDEX = 6
@@ -124,8 +124,6 @@ def REarth(
     dir_rows = dirs_all[working_index, :]
     cut_rows = cuts_all[working_index, :]
 
-    # Retained for compatibility with the original implementation,
-    # even though it is not returned.
     dirs = np.sum(np.abs(dir_rows), axis=0)
     unused = (
         len(np.flatnonzero(dirs)) + 1
@@ -159,42 +157,3 @@ def REarth(
         np.array([no_of_terms]),
         interactions,
     )
-
-
-# ------------------------------------------------------------------
-# The functions below were commented out in the original file.
-# They are preserved as comments for reference.
-# ------------------------------------------------------------------
-
-"""
-SID_ = importr("SID")
-PCALG = importr("pcalg")
-
-
-def getStructuralDistances(G, H):
-    G = np.asarray(G)
-    H = np.asarray(H)
-
-    rows, cols = G.shape
-
-    with NUMPY_CONVERTER.context():
-        rG = ro.r.matrix(
-            ro.conversion.py2rpy(G.reshape(-1)),
-            ncol=cols,
-            byrow=True,
-        )
-        rH = ro.r.matrix(
-            ro.conversion.py2rpy(H.reshape(-1)),
-            ncol=cols,
-            byrow=True,
-        )
-
-        sid_result = SID_.structIntervDist(rG, rH)
-        shd_result = SID_.hammingDist(rG, rH)
-
-    return (
-        sid_result[2],
-        sid_result[1],
-        shd_result[0],
-    )
-"""

@@ -7,4 +7,4 @@ from shared.cli import main
 
 if len(sys.argv)==1: sys.argv.extend(['--all-settings','--all-trials'])
 
-if __name__ == '__main__': main('fixed','all', experiment='Table07')
+if __name__ == '__main__': main('er','all', experiment='Table07')

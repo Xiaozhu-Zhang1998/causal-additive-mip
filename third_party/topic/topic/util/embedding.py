@@ -293,9 +293,6 @@ class QuadratureEmbedding(Embedding):
 		"""
 
 		# For osciallatory integrands even this has good properties.
-		#weights = np.ones(self.q) * self.scale * np.pi / (self.q + 1)
-		#omegas = (np.linspace(0, self.q - 1, self.q)) + 1
-		#omegas = omegas * (np.pi / (self.q + 1))
 
 		(omegas, weights) = np.polynomial.legendre.leggauss(2*q)
 
@@ -315,7 +312,6 @@ class QuadratureEmbedding(Embedding):
 		:return: embeding of the x
 		"""
 		(times, d) = tuple(x.size())
-		#z = torch.from_numpy(np.zeros(shape=(self.m, times),dtype=x.dtype))
 		z = torch.zeros(self.m,times, dtype = x.dtype)
 		q = torch.mm(self.W[:, 0:d],torch.t(x))
 
@@ -449,8 +445,6 @@ class LatticeEmbedding(QuadratureEmbedding):
 	"""
 	def __init__(self,**kwargs):
 		super().__init__(**kwargs)
-		#if self.kernel != "modified_matern" and self.kernel !="laplace":
-		#	raise AssertionError("Matern Embedding is allowed only with Matern Kernel")
 
 	def nodesAndWeights(self,q):
 		"""
