@@ -6,4 +6,4 @@ sys.path[:0] = [str(ROOT),str(ROOT/'third_party')]
 from shared.cli import main
 
 
-if __name__ == '__main__': main('fixed','mip', experiment='Table08')
+if __name__ == '__main__': main('er','mip', experiment='Table08')

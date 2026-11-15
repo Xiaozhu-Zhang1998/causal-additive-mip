@@ -1,15 +1,16 @@
 # Table 1: interaction effects
 
-Table 1 reports the results for noise heterogeneity `tau = 0.1`. Supplementary Table 3 reports `tau = 0.2` from the same experiment. There are 13 settings with 20 trials each, eight variables, and 300 observations per trial. See Section 8 and Appendix J.2–J.3 for the model and simulation design.
+Table 1 reports directed SHD for noise heterogeneity `tau = 0.1`, and supplementary Table 3 reports it for `tau = 0.2`. Supplementary Table 4 reports SID for both noise levels. There are 13 settings with 20 trials each, eight variables, and 300 observations per trial. See Section 8 and Appendix J.2–J.3 for the model and simulation design.
 
 From the repository root, create the tables as CSV and LaTeX files under `outputs/tables/`:
 
 ```bash
 Rscript --vanilla experiments/Table01/make_table.R
 Rscript --vanilla experiments/Table03/make_table.R
+Rscript --vanilla experiments/Table04/make_table.R
 ```
 
-The tables use the EDF BIC results for MIP-main and MIP-interaction and calculate directed SHD from the saved baseline DAGs. Directed SHD counts one for each differing adjacency entry, so an edge reversal counts as two. Each cell reports the mean and standard error across 20 trials.
+The tables use the EDF BIC results for MIP-main and MIP-interaction and calculate baseline scores from the saved DAGs. Directed SHD counts one for each differing adjacency entry, so an edge reversal counts as two. Table 4 uses the R package SID to calculate the baseline scores. Each cell reports the mean and standard error across 20 trials.
 
 ## Data and saved results
 

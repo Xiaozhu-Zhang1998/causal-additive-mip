@@ -1,23 +1,11 @@
-# Table04
+# Table 4: structural intervention distance
 
-Full results for eight Erdős–Rényi graph settings with n=500, tau=0.1, and 50 trials per setting.
+Table 4 reports mean structural intervention distance (SID) and its standard error for both noise levels in the [interaction study](../Table01/README.md). It reads the saved EDF BIC summaries for the two MIP estimators and computes SID for the four baseline methods from their saved DAGs.
 
-Numerical results: `results/rawdata_c1/*/RS.csv`. From the repository root:
-
-```bash
-Rscript experiments/Table04/make_table.R
-```
-
-Run methods on the saved datasets:
+With the R package SID installed, run from the repository root:
 
 ```bash
-python experiments/Table04/run_mip.py --trial 0 --n 500 --tau 0.1 --p 15 --edge_prob 0.3
+Rscript --vanilla experiments/Table04/make_table.R
 ```
 
-`run_all.py` with no arguments runs all settings and trials for this result. Use `--dry-run --all-settings --all-trials` to preview the commands. `aggregate.py` combines fitted graphs and runtimes into a numerical summary. Add `--from-saved` to summarize the supplied estimates in `results/reaggregated/`.
-
-The ER experiments use the routines in `shared/`. This folder selects the settings shown in this result. `scripts/run_er_all.py` runs all 32 ER settings.
-
-`generate_data.py` writes new datasets under `data/generated/`.
-
-Experiment parameters are defined in `shared/settings.py`; data formats and variable definitions are in `data/README.md`.
+The script writes `outputs/tables/Table04.csv` and `outputs/tables/Table04.tex`. The Table 1 README gives commands for regenerating datasets and fitting methods.

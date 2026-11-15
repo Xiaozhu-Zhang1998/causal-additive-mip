@@ -62,7 +62,7 @@ For ER experiments, `shared/cli.py` instead calls `select_specs`, then the R wra
 
 ## Interaction study
 
-[Tables 1 and 3](../experiments/Table01/README.md) use the same 13 settings at two noise heterogeneity levels. The MIP runner regenerates the observations from the recorded seed and fits both MIP estimators. The baseline runner reads the supplied observations. The table scripts use the saved EDF summaries and baseline graphs.
+[Tables 1, 3, and 4](../experiments/Table01/README.md) use the same 13 settings at two noise heterogeneity levels. The MIP runner regenerates the observations from the recorded seed and fits both MIP estimators. The baseline runner reads the supplied observations. Tables 1 and 3 report directed SHD. Table 4 reports SID for both noise levels. The table scripts use the saved EDF summaries for MIP and calculate baseline scores from the saved graphs.
 
 ## Results and inputs
 

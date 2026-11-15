@@ -90,8 +90,8 @@ def experiment_specs(family, experiment=None):
     if experiment=='Fig03':
         return [make_spec('er',n=500,p=p,tau=.2,edge_prob=r)
                 for p,r in [(10,.5),(15,.3),(20,.2),(25,.2)]]
-    conditions={'Table04':(500,.1),'Table05':(300,.1),
-                'Table06':(500,.2),'Table07':(300,.2)}
+    conditions={'Table05':(500,.1),'Table06':(300,.1),
+                'Table07':(500,.2),'Table08':(300,.2)}
     if experiment in conditions:
         n,t=conditions[experiment]
         return [make_spec('er',n=n,p=p,tau=t,edge_prob=r) for p,r in ER_SETTINGS]

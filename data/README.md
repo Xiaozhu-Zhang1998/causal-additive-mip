@@ -5,7 +5,7 @@ The datasets, true graphs and numerical results are included with this repositor
 | Location | Contents |
 |---|---|
 | `simulated/rawdata_*/` | Synthetic observations `X_l.csv` and true graphs `dag_oracle_l.csv`; collection names match the result folders. |
-| `simulated/interaction/` | 520 datasets with 300 observations and eight variables, plus true edges and interaction functions in `ground_truth.csv`. See [Tables 1 and 3](../experiments/Table01/README.md). |
+| `simulated/interaction/` | 520 datasets with 300 observations and eight variables, plus true edges and interaction functions in `ground_truth.csv`. See [Tables 1, 3, and 4](../experiments/Table01/README.md). |
 | `real/causal_chamber/X.csv` | Original 10000-by-8 observational matrix. |
 | `real/causal_chamber/subsamples/` | Standardized analysis datasets and true graphs for 70 combinations of sample size and trial. |
 | `real/microarray/` | Original expression source, raw and standardized 118-by-15 matrices. |

@@ -20,7 +20,7 @@ In R, install the plotting packages with:
 
 ```r
 install.packages(c("ggplot2", "dplyr", "tidyr", "purrr", "readr",
-                   "stringr", "patchwork", "ggh4x", "igraph"))
+                   "stringr", "patchwork", "ggh4x", "igraph", "SID"))
 ```
 
 Estimation also uses CAM, mgcv, mboost, np, glmnet and earth; graph aggregation uses SID. Archived releases are available through the [CAM archive](https://cran.r-project.org/src/contrib/Archive/CAM/) and [SID package page](https://cran.r-project.org/package=SID). External baseline sources and notices are listed in `third_party/README.md`.

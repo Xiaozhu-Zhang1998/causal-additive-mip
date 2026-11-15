@@ -8,4 +8,5 @@ stringr
 patchwork
 ggh4x
 igraph
-# Aggregation also needs SID. Fitting needs CAM, mgcv, mboost, np, glmnet, earth.
+SID
+# Fitting needs CAM, mgcv, mboost, np, glmnet, earth.

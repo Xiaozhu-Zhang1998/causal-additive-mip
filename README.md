@@ -10,7 +10,7 @@ With R and the packages listed in `requirements-plotting-R.txt`, run from the re
 Rscript --vanilla scripts/reproduce_saved.R
 ```
 
-The script uses the supplied numerical results to create Figures 1–10 and Tables 1–8 under `outputs/`. To reproduce an individual figure or table, run its script directly.
+The script uses the supplied numerical results to create Figures 1–10 and Tables 1–9 under `outputs/`. To reproduce an individual figure or table, run its script directly.
 
 ```bash
 Rscript experiments/Fig02/plot.R
@@ -45,7 +45,7 @@ python experiments/Fig02/aggregate.py --n 500 --p 15 --tau 0.2 --edge_prob 0.3
 
 Trial indices start at zero. MIP can use the included superstructures and priors directly; newly computed intermediates take precedence. ER settings with p=10 and edge probability 0.3 or 0.4 do not use bootstrap priors; the remaining ER settings do.
 
-The supplied `RS.csv` files provide the numerical values for most figures and tables. The [interaction experiment](experiments/Table01/README.md) has its own saved summaries, graph files, and fitting script for Tables 1 and 3. Re-estimation parameters for the shared fitting scripts are defined in `shared/settings.py`.
+The supplied `RS.csv` files provide the numerical values for most figures and tables. The [interaction experiment](experiments/Table01/README.md) has its own saved summaries, graph files, and fitting script for Tables 1, 3, and 4. Re-estimation parameters for the shared fitting scripts are defined in `shared/settings.py`.
 
 New fits write to `results/rerun/`. Existing fitted outputs require `--overwrite` to replace. `--data-root` selects another input tree and `--output-root` selects another output directory. Preview commands without fitting:
 
