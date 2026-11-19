@@ -58,6 +58,50 @@ A result folder's `run_all.py` with no arguments runs all settings and trials fo
 
 To plot rerun summaries, set `JASA_RESULTS_ROOT` to their result tree. See `docs/execution.md` for execution details and runtime normalization, and `data/README.md` for data formats and variable definitions.
 
+## Generate new inputs and repeat the analyses
+
+Use the included DGP code to generate new synthetic datasets, or prepare new analysis inputs from the original real data. Install the Python and R dependencies listed in `requirements.txt`, `requirements-plotting-R.txt` and `docs/software.md`, and use a valid Gurobi license for MIP fitting. Run the commands from the repository root. New inputs are written under `data/generated/`, and fitted estimates and summaries under `results/rerun/`.
+
+### Synthetic simulations
+
+For the complete Figure 2 experiment, generate the four sample-size/noise settings and their 50 trials, then fit the methods, aggregate the estimates, and plot the results:
+
+```bash
+python experiments/Fig02/generate_data.py --all-settings --all-trials
+python experiments/Fig02/run_all.py --data-root data/generated --all-settings --all-trials
+JASA_RESULTS_ROOT=results/rerun Rscript --vanilla experiments/Fig02/plot.R
+```
+
+The fitting runner performs the R baseline methods and neighborhood selection, constructs bootstrap priors where used, fits the Python baselines and MIP, and aggregates the results. For one setting and trial, replace `--all-settings --all-trials` in both Python commands with `--trial 0 --n 500 --p 15 --tau 0.2 --edge_prob 0.3`; plotting the complete figure requires completing its full grid. Full experiment runs may take hours or days.
+
+Other simulation folders provide their own `generate_data.py` scripts and experiment settings. Figure 7 reuses ER datasets generated through Figure 3. The [interaction experiment](experiments/Table01/README.md) has a separate runner that generates observations and fits the two MIP estimators.
+
+### Causal Chamber
+
+Prepare the analysis subsamples from the included original `data/real/causal_chamber/X.csv`, run all sample sizes and trials, and plot the new results:
+
+```bash
+python experiments/Fig04/prepare_data.py
+python experiments/Fig04/run_all.py --data-root data/generated --all-settings --all-trials
+JASA_RESULTS_ROOT=results/rerun Rscript --vanilla experiments/Fig04/plot.R
+```
+
+### Microarray
+
+Preprocess the included original gene expression data, generate 30 new samples with 118 observations drawn with replacement, fit the methods, calculate the influence scores, and plot:
+
+```bash
+Rscript --vanilla experiments/Fig05/prepare_data.R
+python experiments/Fig05/resample.py --input data/generated/microarray/Arabidopsis_MVA_standardized.csv
+python experiments/Fig05/run_all.py --data-root data/generated --all-trials
+JASA_RESULTS_ROOT=results/rerun Rscript --vanilla scripts/prepare_microarray_results.R
+JASA_RESULTS_ROOT=results/rerun Rscript --vanilla experiments/Fig05/plot.R
+```
+
+The new samples are saved under `data/generated/Expression/subsamples/`. The fitting runner first estimates their superstructures, then fits the baseline methods and MIP. Re-estimation settings, including the microarray MIP penalty of 0.08, are defined in `shared/settings.py`.
+
+These workflows follow the paper's experimental settings using newly generated inputs.
+
 ## Repository layout
 
 - `experiments/`: execution and rendering scripts by figure or table.
